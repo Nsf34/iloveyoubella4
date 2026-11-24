@@ -12,15 +12,6 @@ window.ROUTE4 = {
     'my favorite passenger',
     'luckiest guy on the road'
   ],
-  // The letter. PLACEHOLDER: Nick writes this.
-  letter: {
-    greeting: 'Dear Bella,',
-    paragraphs: [
-      'Nick is still writing this part.'
-    ],
-    signoff: 'Love you forever,',
-    name: 'Nick'
-  },
   // Shown after the last stop. Set to null to hide.
   finale: {
     line: 'Year four, all on one map.',

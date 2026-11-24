@@ -494,18 +494,4 @@ function drawOdo(roll) {
   $('#odoSeconds').textContent = Math.floor(ms / 1e3).toLocaleString();
 }
 
-/* letter */
-$('#btnLetter').addEventListener('click', () => {
-  const env = $('#envelope'); env.classList.remove('open', 'read'); $('#letterHint').hidden = false; $('#letterHint').textContent = 'tap the seal';
-  const L = C.letter, box = $('#letterText'); box.innerHTML = '';
-  const h = document.createElement('h4'); h.textContent = L.greeting; box.appendChild(h);
-  L.paragraphs.forEach(t => { const p = document.createElement('p'); p.textContent = t; box.appendChild(p); });
-  const s = document.createElement('p'); s.className = 'sign'; s.innerHTML = ''; s.append(L.signoff, document.createElement('br'), L.name); box.appendChild(s);
-  openOv('letter');
-});
-$('#seal').addEventListener('click', async () => {
-  const env = $('#envelope'); haptic(); env.classList.add('open'); $('#letterHint').hidden = true;
-  await sleep(RM ? 0 : 1700); env.classList.add('read'); $('#paper').focus();
-});
-$('#letter').addEventListener('click', e => { if (e.target.closest('.letter-close')) $('#letter').hidden = true; });
 })();
