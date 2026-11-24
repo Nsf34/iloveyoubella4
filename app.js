@@ -340,7 +340,7 @@ function openChapter(ci, inTour, onNext, countText) {
   sheet.scrollTop = 0;
   strip.style.removeProperty('--ph');
   const first = strip.querySelector('img,video'), over = sheet.scrollHeight - sheet.clientHeight;
-  if (first && over > 0) strip.style.setProperty('--ph', Math.max(170, Math.round(first.getBoundingClientRect().height - over)) + 'px');
+  if (first && over > 0) strip.style.setProperty('--ph', Math.max(innerWidth < 900 ? 260 : 170, Math.round(first.getBoundingClientRect().height - over)) + 'px');
   return new Promise(res => {
     resumeNext = res;
     nb.onclick = () => { if (inTour) { resumeNext = null; closeSheet(true); res(true); } else if (onNext) onNext(); };
