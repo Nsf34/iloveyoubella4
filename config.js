@@ -1,11 +1,11 @@
 /* Everything Nick might want to change lives here. No em or en dashes in any of it. */
 window.ROUTE4 = {
-  // PLACEHOLDER until Nick picks the nickname (same idea as ButterChip135! last year).
-  passwords: ['CHANGEME135!'],
-  hint: 'Hint: the newest nickname I call you, capital letters where they belong, and don\'t forget the 135! ;)',
+  // Not case sensitive. With or without the space both work.
+  passwords: ['Lucinda135!', 'Lucinda 135!'],
+  hint: 'Hint: the one who drives us everywhere, then my typical password ending ;)',
   gateLines: [
     'i love you',
-    'Lucinda is gassed up',
+    'the tank is full',
     'remember the giant skateboard?',
     'still thinking about those soup dumplings',
     'you won the giant pink animal',
