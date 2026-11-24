@@ -18,7 +18,9 @@
 "id": "p01",
 "t": "t01",
 "date": "2025-11-08",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 }
 ]
 },
@@ -39,14 +41,18 @@
 "id": "p02",
 "t": "t02",
 "date": "2025-11-23",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p03",
 "t": "t03",
 "date": "2025-11-23",
 "fav": false,
-"video": true
+"video": true,
+"w": 720,
+"h": 1280
 }
 ]
 },
@@ -68,19 +74,25 @@
 "t": "t05",
 "date": "2025-12-14",
 "fav": false,
-"video": true
+"video": true,
+"w": 720,
+"h": 1280
 },
 {
 "id": "p06",
 "t": "t06",
 "date": "2025-12-14",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p07",
 "t": "t07",
 "date": "2025-12-14",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 }
 ]
 },
@@ -101,25 +113,33 @@
 "id": "p08",
 "t": "t08",
 "date": "2025-12-20",
-"fav": false
+"fav": false,
+"w": 1067,
+"h": 1600
 },
 {
 "id": "p09",
 "t": "t09",
 "date": "2025-12-20",
-"fav": false
+"fav": false,
+"w": 1067,
+"h": 1600
 },
 {
 "id": "p10",
 "t": "t10",
 "date": "2025-12-20",
-"fav": false
+"fav": false,
+"w": 1067,
+"h": 1600
 },
 {
 "id": "p11",
 "t": "t11",
 "date": "2025-12-21",
-"fav": false
+"fav": false,
+"w": 737,
+"h": 1600
 }
 ]
 },
@@ -140,37 +160,49 @@
 "id": "p12",
 "t": "t12",
 "date": "2025-12-24",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p13",
 "t": "t13",
 "date": "2025-12-24",
-"fav": false
+"fav": false,
+"w": 1600,
+"h": 1200
 },
 {
 "id": "p14",
 "t": "t14",
 "date": "2025-12-24",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p15",
 "t": "t15",
 "date": "2025-12-26",
-"fav": false
+"fav": false,
+"w": 1600,
+"h": 1200
 },
 {
 "id": "p16",
 "t": "t16",
 "date": "2025-12-27",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p17",
 "t": "t17",
 "date": "2025-12-27",
-"fav": false
+"fav": false,
+"w": 900,
+"h": 1600
 }
 ]
 },
@@ -191,19 +223,25 @@
 "id": "p18",
 "t": "t18",
 "date": "2026-01-11",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p19",
 "t": "t19",
 "date": "2026-01-21",
-"fav": false
+"fav": false,
+"w": 737,
+"h": 1600
 },
 {
 "id": "p20",
 "t": "t20",
 "date": "2026-01-25",
-"fav": false
+"fav": false,
+"w": 737,
+"h": 1600
 }
 ]
 },
@@ -224,7 +262,9 @@
 "id": "p21",
 "t": "t21",
 "date": "2026-02-07",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 }
 ]
 },
@@ -245,45 +285,59 @@
 "id": "p22",
 "t": "t22",
 "date": "2026-02-13",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p23",
 "t": "t23",
 "date": "2026-02-13",
 "fav": false,
-"video": true
+"video": true,
+"w": 720,
+"h": 1280
 },
 {
 "id": "p24",
 "t": "t24",
 "date": "2026-02-13",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p25",
 "t": "t25",
 "date": "2026-02-13",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p26",
 "t": "t26",
 "date": "2026-02-14",
-"fav": false
+"fav": false,
+"w": 1600,
+"h": 1200
 },
 {
 "id": "p27",
 "t": "t27",
 "date": "2026-02-14",
 "fav": false,
-"video": true
+"video": true,
+"w": 720,
+"h": 1280
 },
 {
 "id": "p28",
 "t": "t28",
 "date": "2026-02-14",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 }
 ]
 },
@@ -304,7 +358,9 @@
 "id": "p29",
 "t": "t29",
 "date": "2026-02-21",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 }
 ]
 },
@@ -325,13 +381,17 @@
 "id": "p30",
 "t": "t30",
 "date": "2026-03-05",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p31",
 "t": "t31",
 "date": "2026-03-06",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 }
 ]
 },
@@ -352,25 +412,33 @@
 "id": "p32",
 "t": "t32",
 "date": "2026-03-14",
-"fav": false
+"fav": false,
+"w": 1600,
+"h": 1200
 },
 {
 "id": "p33",
 "t": "t33",
 "date": "2026-03-14",
-"fav": false
+"fav": false,
+"w": 1600,
+"h": 1200
 },
 {
 "id": "p34",
 "t": "t34",
 "date": "2026-03-14",
-"fav": false
+"fav": false,
+"w": 1600,
+"h": 1200
 },
 {
 "id": "p35",
 "t": "t35",
 "date": "2026-03-15",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 }
 ]
 },
@@ -391,37 +459,49 @@
 "id": "p36",
 "t": "t36",
 "date": "2026-04-11",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p37",
 "t": "t37",
 "date": "2026-04-11",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p38",
 "t": "t38",
 "date": "2026-04-11",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p39",
 "t": "t39",
 "date": "2026-04-12",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p40",
 "t": "t40",
 "date": "2026-04-12",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p41",
 "t": "t41",
 "date": "2026-04-24",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 }
 ]
 },
@@ -442,13 +522,17 @@
 "id": "p42",
 "t": "t42",
 "date": "2026-04-29",
-"fav": false
+"fav": false,
+"w": 738,
+"h": 1600
 },
 {
 "id": "p43",
 "t": "t43",
 "date": "2026-04-29",
-"fav": false
+"fav": false,
+"w": 738,
+"h": 1600
 }
 ]
 },
@@ -469,13 +553,17 @@
 "id": "p44",
 "t": "t44",
 "date": "2026-05-05",
-"fav": false
+"fav": false,
+"w": 1600,
+"h": 1200
 },
 {
 "id": "p45",
 "t": "t45",
 "date": "2026-05-06",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 }
 ]
 },
@@ -496,23 +584,27 @@
 "id": "p46",
 "t": "t46",
 "date": "2026-06-10",
-"fav": false
+"fav": false,
+"w": 720,
+"h": 480
 },
 {
 "id": "p47",
 "t": "t47",
 "date": "2026-06-12",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 }
 ]
 },
 {
 "key": "moving",
-"title": "You moved to New York",
-"place": "nyc",
-"mode": "car",
+"title": "Moving day",
+"place": "wilmington",
+"mode": null,
 "via": null,
-"blurb": "You moved to New York. No more bus, no more Amtrak. Just us.",
+"blurb": "Packing day in Wilmington, featuring the giant bubble wrap roll and you not moving from the couch. Then you moved to New York. No more bus, no more Amtrak.",
 "start": "2026-07-11",
 "dates": [
 "2026-07-11",
@@ -523,7 +615,9 @@
 "id": "p48",
 "t": "t48",
 "date": "2026-07-11",
-"fav": false
+"fav": false,
+"w": 1600,
+"h": 1200
 }
 ]
 },
@@ -531,7 +625,7 @@
 "key": "grandpa",
 "title": "For your grandpa",
 "place": "nyc",
-"mode": null,
+"mode": "car",
 "via": null,
 "blurb": "Saying goodbye to your grandpa.",
 "start": "2026-07-18",
@@ -544,13 +638,17 @@
 "id": "p49",
 "t": "t49",
 "date": "2026-07-18",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p50",
 "t": "t50",
 "date": "2026-07-18",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 }
 ]
 },
@@ -575,43 +673,57 @@
 "id": "p51",
 "t": "t51",
 "date": "2026-07-21",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p52",
 "t": "t52",
 "date": "2026-07-21",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p53",
 "t": "t53",
 "date": "2026-07-21",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p54",
 "t": "t54",
 "date": "2026-07-22",
-"fav": false
+"fav": false,
+"w": 1600,
+"h": 1200
 },
 {
 "id": "p55",
 "t": "t55",
 "date": "2026-07-22",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p56",
 "t": "t56",
 "date": "2026-07-22",
-"fav": false
+"fav": false,
+"w": 1600,
+"h": 1200
 },
 {
 "id": "p57",
 "t": "t57",
 "date": "2026-07-23",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 }
 ]
 },
@@ -633,39 +745,51 @@
 "t": "t58",
 "date": "2026-07-24",
 "fav": false,
-"video": true
+"video": true,
+"w": 720,
+"h": 1280
 },
 {
 "id": "p59",
 "t": "t59",
 "date": "2026-07-24",
 "fav": false,
-"video": true
+"video": true,
+"w": 726,
+"h": 1280
 },
 {
 "id": "p60",
 "t": "t60",
 "date": "2026-07-25",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p61",
 "t": "t61",
 "date": "2026-07-25",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p62",
 "t": "t62",
 "date": "2026-07-25",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p63",
 "t": "t63",
 "date": "2026-07-25",
 "fav": false,
-"video": true
+"video": true,
+"w": 720,
+"h": 1280
 }
 ]
 },
@@ -686,37 +810,49 @@
 "id": "p64",
 "t": "t64",
 "date": "2026-07-30",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p67",
 "t": "t67",
 "date": "2026-08-19",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p68",
 "t": "t68",
 "date": "2026-08-19",
-"fav": false
+"fav": false,
+"w": 1600,
+"h": 1200
 },
 {
 "id": "p69",
 "t": "t69",
 "date": "2026-08-25",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p70",
 "t": "t70",
 "date": "2026-09-03",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p71",
 "t": "t71",
 "date": "2026-09-12",
-"fav": false
+"fav": false,
+"w": 1600,
+"h": 1200
 }
 ]
 },
@@ -737,13 +873,17 @@
 "id": "p65",
 "t": "t65",
 "date": "2026-08-08",
-"fav": false
+"fav": false,
+"w": 1600,
+"h": 1200
 },
 {
 "id": "p66",
 "t": "t66",
 "date": "2026-08-08",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 }
 ]
 },
@@ -764,7 +904,9 @@
 "id": "p72",
 "t": "t72",
 "date": "2026-10-04",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 }
 ]
 },
@@ -789,43 +931,57 @@
 "id": "p73",
 "t": "t73",
 "date": "2026-10-16",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p74",
 "t": "t74",
 "date": "2026-10-17",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p75",
 "t": "t75",
 "date": "2026-10-17",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p76",
 "t": "t76",
 "date": "2026-10-17",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p77",
 "t": "t77",
 "date": "2026-10-17",
-"fav": false
+"fav": false,
+"w": 1600,
+"h": 1200
 },
 {
 "id": "p78",
 "t": "t78",
 "date": "2026-10-17",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p79",
 "t": "t79",
 "date": "2026-10-18",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 }
 ]
 },
@@ -846,43 +1002,57 @@
 "id": "p80",
 "t": "t80",
 "date": "2026-10-23",
-"fav": false
+"fav": false,
+"w": 900,
+"h": 1600
 },
 {
 "id": "p81",
 "t": "t81",
 "date": "2026-10-23",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p82",
 "t": "t82",
 "date": "2026-10-24",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p83",
 "t": "t83",
 "date": "2026-10-24",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p84",
 "t": "t84",
 "date": "2026-10-25",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p85",
 "t": "t85",
 "date": "2026-10-25",
-"fav": false
+"fav": false,
+"w": 1600,
+"h": 1200
 },
 {
 "id": "p86",
 "t": "t86",
 "date": "2026-10-25",
-"fav": false
+"fav": false,
+"w": 1600,
+"h": 900
 }
 ]
 },
@@ -903,13 +1073,17 @@
 "id": "p87",
 "t": "t87",
 "date": "2026-10-30",
-"fav": false
+"fav": false,
+"w": 1600,
+"h": 1200
 },
 {
 "id": "p88",
 "t": "t88",
 "date": "2026-10-30",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 }
 ]
 },
@@ -930,13 +1104,17 @@
 "id": "p89",
 "t": "t89",
 "date": "2026-11-20",
-"fav": false
+"fav": false,
+"w": 1200,
+"h": 1600
 },
 {
 "id": "p90",
 "t": "t90",
 "date": "2026-11-20",
-"fav": false
+"fav": false,
+"w": 1600,
+"h": 1200
 }
 ]
 }

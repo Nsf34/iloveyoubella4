@@ -38,7 +38,7 @@ ticket.addEventListener('submit', async e => {
 });
 
 /* ---------------- data + map ---------------- */
-let MAP, YEAR, vb, svg, gRoutes, gPins, gVehicle, gDecal, pinEls = {}, k = 1;
+let MAP, YEAR, vb, svg, world, gRoutes, gPins, gVehicle, gDecal, pinEls = {}, k = 1, lastK = 0;
 async function boot(fresh) {
   [MAP, YEAR] = await Promise.all([fetch('data/map.json').then(r => r.json()), fetch('data/year.json').then(r => r.json())]);
   $('#app').hidden = false;
@@ -52,19 +52,12 @@ async function boot(fresh) {
 const OURS = new Set(['New York', 'New Jersey', 'Delaware', 'Vermont', 'Virginia']);
 const STATE_LABELS = [['NEW YORK', -75.6, 42.6], ['PENNSYLVANIA', -77.6, 40.9], ['NEW JERSEY', -74.62, 40.25], ['VERMONT', -72.75, 44.05], ['VIRGINIA', -78.9, 37.85], ['MASSACHUSETTS', -72.1, 42.38], ['MARYLAND', -76.95, 39.45], ['CONNECTICUT', -72.75, 41.62], ['NEW HAMPSHIRE', -71.65, 43.6], ['DELAWARE', -75.42, 38.98]];
 function buildMap() {
-  svg = $('#map');
-  svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-  const water = svgEl('rect', { x: -2000, y: -2000, width: MAP.w + 4000, height: MAP.h + 4000, fill: 'var(--water)' }, svg);
-  const land = svgEl('g', {}, svg);
-  for (const s of MAP.states) {
-    svgEl('path', { d: s.d, class: 'coast' }, land);
-  }
-  for (const s of MAP.states) svgEl('path', { d: s.d, class: 'state' + (OURS.has(s.name) ? ' ours' : '') }, land);
-  const lab = svgEl('g', {}, svg);
-  for (const [t, lon, lat] of STATE_LABELS) {
-    const p = proj(lon, lat); if (!p) continue;
-    const e = svgEl('text', { x: p[0], y: p[1], class: 'st-label', 'text-anchor': 'middle', 'font-size': t.length > 10 ? 15 : 18 }, lab); e.textContent = t;
-  }
+  // The base map is painted ONCE onto two canvases (a sharp core and a soft surround). The camera only
+  // moves the #world element with a CSS transform, so nothing is redrawn while it glides (smooth on iPhone).
+  world = $('#world'); svg = $('#map');
+  svg.setAttribute('viewBox', `0 0 ${MAP.w} ${MAP.h}`);
+  paintBase();
+  if (document.fonts && document.fonts.load) document.fonts.load('600 18px "Barlow Condensed"').then(paintBase).catch(() => {});
   gRoutes = svgEl('g', {}, svg);
   gDecal = svgEl('g', {}, svg);
   gPins = svgEl('g', {}, svg);
@@ -86,7 +79,32 @@ function buildMap() {
   }
   buildVehicles();
   markSeen();
-  window.addEventListener('resize', () => setView(vb));
+  window.addEventListener('resize', () => { lastK = 0; setView(sheetOpen ? vb : fullView()); });
+}
+const OUTER = { x: -620, y: -720, w: 2240, h: 2740, s: 0.75 }, CORE_S = 2.4;
+function paintBase() {
+  const css = getComputedStyle(document.documentElement), v = n => css.getPropertyValue(n).trim();
+  const draw = (cv, ox, oy, w, h, s, labels) => {
+    cv.width = Math.round(w * s); cv.height = Math.round(h * s);
+    const c = cv.getContext('2d'); c.setTransform(s, 0, 0, s, -ox * s, -oy * s);
+    c.fillStyle = v('--water'); c.fillRect(ox, oy, w, h);
+    c.lineJoin = 'round';
+    if (MAP.canada) { c.fillStyle = v('--land-far'); c.fill(new Path2D(MAP.canada)); }
+    for (const st of MAP.states) { const p = new Path2D(st.d); c.strokeStyle = 'rgba(111,159,184,.55)'; c.lineWidth = 3; c.setLineDash([]); c.stroke(p); }
+    for (const st of MAP.states) {
+      const p = new Path2D(st.d); c.fillStyle = OURS.has(st.name) ? v('--land-ours') : v('--land'); c.fill(p);
+      c.strokeStyle = v('--land-line'); c.lineWidth = 1; c.setLineDash([5, 4]); c.stroke(p);
+    }
+    if (!labels) return;
+    c.setLineDash([]); c.fillStyle = 'rgba(150,134,98,.8)'; c.textAlign = 'center'; c.textBaseline = 'middle';
+    for (const [t, lon, lat] of STATE_LABELS) {
+      const p = proj(lon, lat); c.font = `600 ${t.length > 10 ? 14 : 17}px "Barlow Condensed", "Arial Narrow", sans-serif`;
+      try { c.letterSpacing = '6px'; } catch {}
+      c.fillText(t, p[0], p[1]);
+    }
+  };
+  draw($('#outer'), OUTER.x, OUTER.y, OUTER.w, OUTER.h, OUTER.s, false);
+  draw($('#core'), 0, 0, MAP.w, MAP.h, CORE_S, true);
 }
 const LABEL_SIDE = { oldtappan: 'r', nyc: 'b', lbi: 'b', wilmington: 'l', farm: 'l', saratoga: 'r', lakegeorge: 'r', ithaca: 'l', burlington: 'l', waterbury: 'r', randolph: 'r', cville: 'r', turks: 'l' };
 
@@ -108,7 +126,7 @@ function proj(lon, lat) {
 }
 
 /* ---------------- camera (animated viewBox) ---------------- */
-function stageSize() { const r = svg.getBoundingClientRect(); return [r.width || innerWidth, r.height || innerHeight]; }
+function stageSize() { const r = $('#stage').getBoundingClientRect(); return [r.width || innerWidth, r.height || innerHeight]; }
 function fit(b) { // expand box to the stage aspect ratio, leave room for chrome
   const [W, H] = stageSize(); const ar = W / H;
   let { x, y, w, h } = b; const cx = x + w / 2, cy = y + h / 2;
@@ -129,8 +147,10 @@ function boxAround(pts, pad, minW = 260, forSheet = false) {
   return b;
 }
 function setView(b) {
-  vb = b; svg.setAttribute('viewBox', `${b.x.toFixed(1)} ${b.y.toFixed(1)} ${b.w.toFixed(1)} ${b.h.toFixed(1)}`);
-  const [W] = stageSize(); k = b.w / W;
+  vb = b;
+  const [W] = stageSize(); const s = W / b.w; k = b.w / W;
+  world.style.transform = `translate3d(${(-b.x * s).toFixed(2)}px,${(-b.y * s).toFixed(2)}px,0) scale(${s.toFixed(4)})`;
+  if (Math.abs(k - lastK) > 0.004) { lastK = k; svg.style.setProperty('--k', k.toFixed(3)); } else return;
   for (const key in pinEls) { const p = MAP.places[key]; pinEls[key].setAttribute('transform', `translate(${p.x},${p.y}) scale(${k})`); }
   if (vehicle.pos) placeVehicle(vehicle.pos, vehicle.ang);
 }
@@ -230,11 +250,12 @@ async function drive(s, i) {
   const leg = { from: s.from, to: s.place, mode: s.mode, i };
   await camera(boxAround([[a.x, a.y], [b.x, b.y]], 110), 900);
   const c = YEAR.chapters[s.ci];
+  if (s.show) c.photos.slice(0, 4).forEach(ph => { const im = new Image(); im.src = 'img/m' + ph.id.slice(1) + '.webp'; });
   caption(s.quiet ? 'Back home' : `${s.mode === 'car' ? 'Lucinda' : s.mode === 'bus' ? 'The bus' : s.mode === 'train' ? 'Amtrak' : 'Flight'} to ${b.label}${s.show ? ' · ' + fmtDate(c.dates[0], { month: 'short', year: 'numeric' }) : ''}`);
   const p = addRoute(leg); seenLegs.push(leg); store.set('legs', seenLegs);
   setVehicle(s.mode); gVehicle.setAttribute('opacity', 1);
   const L = p.getTotalLength();
-  p.style.strokeDasharray = s.mode === 'bus' ? '1 6' : s.mode === 'plane' ? '7 6' : `${L} ${L}`;
+  const solid = s.mode !== 'bus' && s.mode !== 'plane'; if (solid) p.style.strokeDasharray = `${L} ${L}`;
   const ms = RM ? 0 : (s.quiet ? 900 : Math.min(3200, 1100 + L * 4));
   const t0 = performance.now();
   await new Promise(res => {
@@ -249,7 +270,7 @@ async function drive(s, i) {
     };
     requestAnimationFrame(step);
   });
-  p.style.strokeDasharray = s.mode === 'bus' ? '1 6' : s.mode === 'plane' ? '7 6' : ''; p.style.strokeDashoffset = '';
+  p.style.strokeDasharray = ''; p.style.strokeDashoffset = '';
   hideCaption();
 }
 function markSeen(place) {
@@ -280,6 +301,7 @@ function openPlace(key) {
 }
 function openChapter(ci, inTour, onNext, countText) {
   const c = YEAR.chapters[ci]; const p = MAP.places[c.place];
+  hideCaption();
   $('#sheetKicker').textContent = `${p.label} · ${fmtDate(c.dates[0], { month: 'long', year: 'numeric' })}`;
   $('#sheetTitle').textContent = c.title;
   $('#blurb').textContent = c.blurb || '';
@@ -290,15 +312,15 @@ function openChapter(ci, inTour, onNext, countText) {
   c.photos.forEach((ph, i) => {
     const f = document.createElement('figure'); f.className = 'snap'; f.style.margin = 0;
     if (ph.video) {
-      const v = document.createElement('video'); v.src = 'vid/' + ph.id + '.mp4'; v.poster = 'img/' + ph.id + '.webp'; v.playsInline = true; v.preload = 'none'; v.loop = true; v.setAttribute('playsinline', '');
+      const v = document.createElement('video'); v.src = 'vid/' + ph.id + '.mp4'; v.poster = 'img/m' + ph.id.slice(1) + '.webp'; v.playsInline = true; v.preload = 'none'; v.loop = true; if (ph.w && ph.h) v.style.aspectRatio = ph.w + ' / ' + ph.h; v.setAttribute('playsinline', '');
       f.appendChild(v);
       const b = document.createElement('button'); b.className = 'play'; b.setAttribute('aria-label', 'Play video'); b.innerHTML = '<span>&#9654;</span>';
       b.addEventListener('click', () => { f.classList.add('playing'); v.controls = true; v.play().catch(() => {}); });
       f.appendChild(b);
     } else {
-      const im = document.createElement('img'); im.alt = ''; im.decoding = 'async'; im.loading = i < 3 ? 'eager' : 'lazy';
-      im.src = 'img/' + ph.id + '.webp';
-      if (!RM) { im.style.opacity = 0; im.style.filter = 'sepia(.6) brightness(1.5) blur(2px)'; im.addEventListener('load', () => { im.style.transition = 'opacity 1.2s ease, filter 2.2s ease'; requestAnimationFrame(() => { im.style.opacity = 1; im.style.filter = 'none'; }); }, { once: true }); }
+      const im = document.createElement('img'); im.alt = ''; im.decoding = 'async'; 
+      im.src = 'img/m' + ph.id.slice(1) + '.webp';
+      if (ph.w && ph.h) { im.width = ph.w; im.height = ph.h; im.style.aspectRatio = ph.w + ' / ' + ph.h; }
       im.addEventListener('click', () => lightbox(c, i));
       f.appendChild(im);
     }
