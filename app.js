@@ -226,7 +226,7 @@ async function startTour() {
   closeSheet(true);
   const S = stops();
   if (tourIdx >= S.length) { tourIdx = 0; resetRoutes(); }
-  if (tourIdx === 0) { resetRoutes(); setVehicle('car'); placeVehicle([MAP.places.nyc.x, MAP.places.nyc.y], 0); gVehicle.setAttribute('opacity', 1); await caption('Start: New York, November 2025'); }
+  if (tourIdx === 0) { resetRoutes(); setVehicle('car'); placeVehicle([MAP.places.nyc.x, MAP.places.nyc.y], 0); gVehicle.setAttribute('opacity', 1); await caption('Start: November 24, 2025'); }
   while (touring && tourIdx < S.length) {
     const s = S[tourIdx];
     if (s.mode === 'none') { gVehicle.setAttribute('opacity', 0); const p = MAP.places[s.place]; vehicle.pos = [p.x, p.y]; }
@@ -372,35 +372,89 @@ document.addEventListener('keydown', e => {
   if (sheetOpen) $('#sheetClose').click();
 });
 
-/* sticker machine: a shuffle bag, so every sticker comes out once before any repeats */
+/* sticker machine: one ball in the dome for every sticker still inside. A turn shakes them, one drops
+   out of the bottom and the rest fall. Nothing repeats until the machine is empty. */
 let STK = [];
-fetch('data/stickers.json').then(r => r.ok ? r.json() : []).then(a => { STK = a; fillDome(); countStk(); }).catch(() => {});
+fetch('data/stickers.json').then(r => r.ok ? r.json() : []).then(a => { STK = a; countStk(); if (!$('#machine').hidden) fillDome(); }).catch(() => {});
 const CAPS = ['#c8372d', '#2a5aa6', '#2e7d4f', '#e3a32b', '#1d2f57', '#d4456b'];
+const BR = 16;
+let balls = [], simOn = false, domeW = 0, domeH = 0, still = 0, lastT = 0, acc = 0;
+const getOut = () => (store.get('out', null) || store.get('stk', [])).slice();
+const leftIn = () => { const out = getOut(); return STK.filter(s => !out.includes(s.id)); };
 function fillDome() {
-  const d = $('#dome'); d.innerHTML = '';
-  for (let i = 0; i < 16; i++) { const c = document.createElement('span'); c.className = 'cap'; c.style.background = CAPS[i % CAPS.length]; c.style.left = (8 + (i * 37) % 150) + 'px'; c.style.top = (70 + ((i * 53) % 90)) + 'px'; c.style.transform = `rotate(${i * 47}deg)`; d.appendChild(c); }
+  const d = $('#dome'); domeW = d.clientWidth; domeH = d.clientHeight; if (!domeW || !STK.length) return;
+  d.innerHTML = ''; balls = [];
+  const n = leftIn().length;
+  for (let i = 0; i < n; i++) {
+    const el = document.createElement('span'); el.className = 'cap'; const c = CAPS[i % CAPS.length]; el.style.background = c; d.appendChild(el);
+    balls.push({ el, c, x: BR + 30 + Math.random() * (domeW - 2 * BR - 60), y: BR + 40 + Math.random() * (domeH * .45), vx: (Math.random() - .5) * 3, vy: 0, a: Math.random() * 360 });
+  }
+  if (RM) { for (let k = 0; k < 500; k++) stepBalls(); drawBalls(); } else wake();
+}
+function stepBalls() {
+  const cx = domeW / 2, cr = domeW / 2 - BR;
+  for (const b of balls) { b.vy += .35; b.vx *= .99; b.vy *= .99; b.x += b.vx; b.y += b.vy; b.a += b.vx * 3; }
+  for (let k = 0; k < 4; k++) {
+    for (let i = 0; i < balls.length; i++) for (let j = i + 1; j < balls.length; j++) {
+      const a = balls[i], b = balls[j], dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy);
+      if (d >= 2 * BR || d === 0) continue;
+      const nx = dx / d, ny = dy / d, o = (2 * BR - d) / 2;
+      a.x -= nx * o; a.y -= ny * o; b.x += nx * o; b.y += ny * o;
+      const rv = (b.vx - a.vx) * nx + (b.vy - a.vy) * ny;
+      if (rv < 0) { const imp = rv * .6; a.vx += imp * nx; a.vy += imp * ny; b.vx -= imp * nx; b.vy -= imp * ny; }
+    }
+    for (const b of balls) {
+      if (b.x < BR) { b.x = BR; b.vx = Math.abs(b.vx) * .4; }
+      if (b.x > domeW - BR) { b.x = domeW - BR; b.vx = -Math.abs(b.vx) * .4; }
+      if (b.y > domeH - BR) { b.y = domeH - BR; b.vy = -Math.abs(b.vy) * .3; b.vx *= .92; }
+      if (b.y < cx) { // the rounded top of the dome
+        const dx = b.x - cx, dy = b.y - cx, d = Math.hypot(dx, dy);
+        if (d > cr) { const nx = dx / d, ny = dy / d; b.x = cx + nx * cr; b.y = cx + ny * cr; const vn = b.vx * nx + b.vy * ny; if (vn > 0) { b.vx -= 1.4 * vn * nx; b.vy -= 1.4 * vn * ny; } }
+      }
+    }
+  }
+}
+function drawBalls() { for (const b of balls) b.el.style.transform = `translate3d(${(b.x - BR).toFixed(1)}px,${(b.y - BR).toFixed(1)}px,0) rotate(${b.a.toFixed(0)}deg)`; }
+function wake() { still = 0; if (simOn) return; simOn = true; lastT = 0; acc = 0; requestAnimationFrame(tickBalls); }
+function tickBalls(t) {
+  if ($('#machine').hidden) { simOn = false; return; }
+  acc += lastT ? Math.min(50, t - lastT) : 16.7; lastT = t;
+  while (acc >= 16.6) { stepBalls(); acc -= 16.7; }
+  drawBalls();
+  const m = balls.reduce((s, b) => Math.max(s, Math.abs(b.vx) + Math.abs(b.vy)), 0);
+  still = m < 1.1 ? still + 1 : 0;
+  if (still > 50) { simOn = false; return; }
+  requestAnimationFrame(tickBalls);
 }
 function countStk() {
-  const got = store.get('stk', []);
-  $('#mCount').textContent = STK.length ? `${got.length} of ${STK.length} collected` : '';
+  const got = store.get('stk', []).filter(id => STK.some(s => s.id === id)), n = leftIn().length;
+  $('#mCount').textContent = !STK.length ? '' : n ? `${n} left in the machine · ${got.length} of ${STK.length} collected` : 'Empty! You got every one. Twist to refill';
   const col = $('#collection'); col.innerHTML = '';
-  got.forEach(id => { const s = STK.find(x => x.id === id); if (!s) return; const im = document.createElement('img'); im.src = 'stk/' + s.file; im.alt = 'sticker'; im.loading = 'lazy'; col.appendChild(im); });
+  got.forEach(id => { const s = STK.find(x => x.id === id); const im = document.createElement('img'); im.src = 'stk/' + s.file; im.alt = 'sticker'; im.loading = 'lazy'; col.appendChild(im); });
 }
 let spinning = false, knobDeg = 0;
-$('#btnStickers').addEventListener('click', () => openOv('machine'));
+$('#btnStickers').addEventListener('click', () => { openOv('machine'); fillDome(); countStk(); });
 $('#knob').addEventListener('click', async () => {
-  if (spinning || !STK.length) return; spinning = true; haptic();
+  if (spinning || !STK.length) return; haptic();
   knobDeg += 360; $('#knob').style.transform = `rotate(${knobDeg}deg)`;
-  let bag = store.get('bag', []);
-  if (!bag.length) { bag = STK.map(s => s.id).sort(() => Math.random() - .5); }
-  const id = bag.pop(); store.set('bag', bag);
-  await sleep(RM ? 0 : 800);
-  const cap = document.createElement('span'); cap.className = 'cap'; cap.style.background = CAPS[Math.floor(Math.random() * CAPS.length)];
+  const rest = leftIn();
+  if (!rest.length) { store.set('out', []); fillDome(); countStk(); return; }
+  spinning = true;
+  if (balls.length !== rest.length) fillDome();
+  for (const b of balls) { b.vx += (Math.random() - .5) * 16; b.vy -= 5 + Math.random() * 8; } wake();
+  await sleep(RM ? 0 : 1200);
+  const s = rest[Math.floor(Math.random() * rest.length)];
+  const out = getOut(); out.push(s.id); store.set('out', out);
+  let bi = 0, best = 1e9; balls.forEach((b, i) => { const dd = Math.hypot(b.x - domeW / 2, b.y - domeH); if (dd < best) { best = dd; bi = i; } });
+  const ball = balls.splice(bi, 1)[0]; wake();
+  if (ball) { ball.el.style.transition = 'transform .35s ease-in'; ball.el.style.transform = `translate3d(${(ball.x - BR).toFixed(1)}px,${domeH + 12}px,0)`; await sleep(RM ? 0 : 380); ball.el.remove(); }
+  countStk();
+  const cap = document.createElement('span'); cap.className = 'cap'; cap.style.background = ball ? ball.c : CAPS[0];
   cap.setAttribute('role', 'button'); cap.setAttribute('aria-label', 'Open the capsule'); cap.tabIndex = 0;
   $('#chute').innerHTML = ''; $('#chute').appendChild(cap);
   const open = () => {
-    const s = STK.find(x => x.id === id); $('#chute').innerHTML = '';
-    const got = store.get('stk', []); if (!got.includes(id)) { got.push(id); store.set('stk', got); }
+    $('#chute').innerHTML = '';
+    const got = store.get('stk', []); if (!got.includes(s.id)) { got.push(s.id); store.set('stk', got); }
     const r = document.createElement('div'); r.className = 'reveal'; const im = document.createElement('img'); im.src = 'stk/' + s.file; im.alt = 'A Bella sticker'; r.appendChild(im);
     r.addEventListener('click', () => { r.remove(); countStk(); });
     document.body.appendChild(r); haptic(); spinning = false;

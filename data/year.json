@@ -2,61 +2,6 @@
 "start": "2022-11-24T00:00:00-05:00",
 "chapters": [
 {
-"key": "tailgate",
-"title": "UVA tailgate",
-"place": "cville",
-"mode": "none",
-"via": null,
-"blurb": "Where we left off: a UVA tailgate, a few weeks before year three.",
-"start": "2025-11-08",
-"dates": [
-"2025-11-08",
-"2025-11-08"
-],
-"photos": [
-{
-"id": "p01",
-"t": "t01",
-"date": "2025-11-08",
-"fav": false,
-"w": 1200,
-"h": 1600
-}
-]
-},
-{
-"key": "lbi-nov",
-"title": "The day before year three",
-"place": "lbi",
-"mode": "none",
-"via": null,
-"blurb": "The day before year three. Freezing on Long Beach Island and you still surfed the giant skateboard like a pro.",
-"start": "2025-11-23",
-"dates": [
-"2025-11-23",
-"2025-11-23"
-],
-"photos": [
-{
-"id": "p02",
-"t": "t02",
-"date": "2025-11-23",
-"fav": false,
-"w": 1200,
-"h": 1600
-},
-{
-"id": "p03",
-"t": "t03",
-"date": "2025-11-23",
-"fav": false,
-"video": true,
-"w": 720,
-"h": 1280
-}
-]
-},
-{
 "key": "snow",
 "title": "Snow day",
 "place": "wilmington",
