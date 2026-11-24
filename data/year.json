@@ -1,0 +1,944 @@
+{
+"start": "2022-11-24T00:00:00-05:00",
+"chapters": [
+{
+"key": "tailgate",
+"title": "UVA tailgate",
+"place": "cville",
+"mode": "none",
+"via": null,
+"blurb": "Where we left off: a UVA tailgate, a few weeks before year three.",
+"start": "2025-11-08",
+"dates": [
+"2025-11-08",
+"2025-11-08"
+],
+"photos": [
+{
+"id": "p01",
+"t": "t01",
+"date": "2025-11-08",
+"fav": false
+}
+]
+},
+{
+"key": "lbi-nov",
+"title": "The day before year three",
+"place": "lbi",
+"mode": "none",
+"via": null,
+"blurb": "The day before year three. Freezing on Long Beach Island and you still surfed the giant skateboard like a pro.",
+"start": "2025-11-23",
+"dates": [
+"2025-11-23",
+"2025-11-23"
+],
+"photos": [
+{
+"id": "p02",
+"t": "t02",
+"date": "2025-11-23",
+"fav": false
+},
+{
+"id": "p03",
+"t": "t03",
+"date": "2025-11-23",
+"fav": false,
+"video": true
+}
+]
+},
+{
+"key": "snow",
+"title": "Snow day",
+"place": "wilmington",
+"mode": "bus",
+"via": null,
+"blurb": "First real snow of the winter and you built a snowman in Wilmington.",
+"start": "2025-12-14",
+"dates": [
+"2025-12-14",
+"2025-12-14"
+],
+"photos": [
+{
+"id": "p05",
+"t": "t05",
+"date": "2025-12-14",
+"fav": false,
+"video": true
+},
+{
+"id": "p06",
+"t": "t06",
+"date": "2025-12-14",
+"fav": false
+},
+{
+"id": "p07",
+"t": "t07",
+"date": "2025-12-14",
+"fav": false
+}
+]
+},
+{
+"key": "facetime",
+"title": "FaceTime season",
+"place": "wilmington",
+"mode": null,
+"via": null,
+"blurb": "Long distance, or mid distance, whatever it was. We FaceTimed all the time and you sent me the best selfies.",
+"start": "2025-12-20",
+"dates": [
+"2025-12-20",
+"2025-12-21"
+],
+"photos": [
+{
+"id": "p08",
+"t": "t08",
+"date": "2025-12-20",
+"fav": false
+},
+{
+"id": "p09",
+"t": "t09",
+"date": "2025-12-20",
+"fav": false
+},
+{
+"id": "p10",
+"t": "t10",
+"date": "2025-12-20",
+"fav": false
+},
+{
+"id": "p11",
+"t": "t11",
+"date": "2025-12-21",
+"fav": false
+}
+]
+},
+{
+"key": "xmas",
+"title": "Christmas with your family",
+"place": "oldtappan",
+"mode": "car",
+"via": null,
+"blurb": "Christmas Eve with your family. You looked so pretty by the tree, and then we all ended up in a pile on the couch with the dog.",
+"start": "2025-12-24",
+"dates": [
+"2025-12-24",
+"2025-12-27"
+],
+"photos": [
+{
+"id": "p12",
+"t": "t12",
+"date": "2025-12-24",
+"fav": false
+},
+{
+"id": "p13",
+"t": "t13",
+"date": "2025-12-24",
+"fav": false
+},
+{
+"id": "p14",
+"t": "t14",
+"date": "2025-12-24",
+"fav": false
+},
+{
+"id": "p15",
+"t": "t15",
+"date": "2025-12-26",
+"fav": false
+},
+{
+"id": "p16",
+"t": "t16",
+"date": "2025-12-27",
+"fav": false
+},
+{
+"id": "p17",
+"t": "t17",
+"date": "2025-12-27",
+"fav": false
+}
+]
+},
+{
+"key": "january",
+"title": "January",
+"place": "nyc",
+"mode": "car",
+"via": null,
+"blurb": "Lava cake, toothbrush dancing, and the face of someone deep in MCAT studying.",
+"start": "2026-01-11",
+"dates": [
+"2026-01-11",
+"2026-01-25"
+],
+"photos": [
+{
+"id": "p18",
+"t": "t18",
+"date": "2026-01-11",
+"fav": false
+},
+{
+"id": "p19",
+"t": "t19",
+"date": "2026-01-21",
+"fav": false
+},
+{
+"id": "p20",
+"t": "t20",
+"date": "2026-01-25",
+"fav": false
+}
+]
+},
+{
+"key": "bday",
+"title": "Your birthday party",
+"place": "nyc",
+"mode": null,
+"via": null,
+"blurb": "Your birthday party. Sparkles on, best night of the winter.",
+"start": "2026-02-07",
+"dates": [
+"2026-02-07",
+"2026-02-07"
+],
+"photos": [
+{
+"id": "p21",
+"t": "t21",
+"date": "2026-02-07",
+"fav": false
+}
+]
+},
+{
+"key": "valentines",
+"title": "Valentine's weekend",
+"place": "nyc",
+"mode": null,
+"via": null,
+"blurb": "Matcha in one hand, coffee in the other. The Empire State Building lit up behind you, soup dumplings late at night, skating in Bryant Park, and a sushi and soba feast at home.",
+"start": "2026-02-13",
+"dates": [
+"2026-02-13",
+"2026-02-14"
+],
+"photos": [
+{
+"id": "p22",
+"t": "t22",
+"date": "2026-02-13",
+"fav": false
+},
+{
+"id": "p23",
+"t": "t23",
+"date": "2026-02-13",
+"fav": false,
+"video": true
+},
+{
+"id": "p24",
+"t": "t24",
+"date": "2026-02-13",
+"fav": false
+},
+{
+"id": "p25",
+"t": "t25",
+"date": "2026-02-13",
+"fav": false
+},
+{
+"id": "p26",
+"t": "t26",
+"date": "2026-02-14",
+"fav": false
+},
+{
+"id": "p27",
+"t": "t27",
+"date": "2026-02-14",
+"fav": false,
+"video": true
+},
+{
+"id": "p28",
+"t": "t28",
+"date": "2026-02-14",
+"fav": false
+}
+]
+},
+{
+"key": "turks",
+"title": "Turks and Caicos",
+"place": "turks",
+"mode": "plane",
+"via": null,
+"blurb": "Turks and Caicos. Sun in February, no complaints.",
+"start": "2026-02-21",
+"dates": [
+"2026-02-21",
+"2026-02-21"
+],
+"photos": [
+{
+"id": "p29",
+"t": "t29",
+"date": "2026-02-21",
+"fav": false
+}
+]
+},
+{
+"key": "march-city",
+"title": "March in the city",
+"place": "nyc",
+"mode": "plane",
+"via": null,
+"blurb": "Noodle dinners and a Warby Parker run. The sunglasses were a great call.",
+"start": "2026-03-05",
+"dates": [
+"2026-03-05",
+"2026-03-06"
+],
+"photos": [
+{
+"id": "p30",
+"t": "t30",
+"date": "2026-03-05",
+"fav": false
+},
+{
+"id": "p31",
+"t": "t31",
+"date": "2026-03-06",
+"fav": false
+}
+]
+},
+{
+"key": "farm-snow",
+"title": "The farm in the snow",
+"place": "farm",
+"mode": "car",
+"via": null,
+"blurb": "The farm in Galway, in the snow. Ponies and a donkey, cowboy hats in the barn, and a cat who decided you were his.",
+"start": "2026-03-14",
+"dates": [
+"2026-03-14",
+"2026-03-15"
+],
+"photos": [
+{
+"id": "p32",
+"t": "t32",
+"date": "2026-03-14",
+"fav": false
+},
+{
+"id": "p33",
+"t": "t33",
+"date": "2026-03-14",
+"fav": false
+},
+{
+"id": "p34",
+"t": "t34",
+"date": "2026-03-14",
+"fav": false
+},
+{
+"id": "p35",
+"t": "t35",
+"date": "2026-03-15",
+"fav": false
+}
+]
+},
+{
+"key": "april-city",
+"title": "April in the city",
+"place": "nyc",
+"mode": "car",
+"via": null,
+"blurb": "A night out that ended with a Romano's baked ziti slice (wasn't the pie basically free?), Apollo bagels that were unreal, all you can eat for my birthday, free potatoes from Windsor Court, and you keeping me company while I grinded.",
+"start": "2026-04-11",
+"dates": [
+"2026-04-11",
+"2026-04-24"
+],
+"photos": [
+{
+"id": "p36",
+"t": "t36",
+"date": "2026-04-11",
+"fav": false
+},
+{
+"id": "p37",
+"t": "t37",
+"date": "2026-04-11",
+"fav": false
+},
+{
+"id": "p38",
+"t": "t38",
+"date": "2026-04-11",
+"fav": false
+},
+{
+"id": "p39",
+"t": "t39",
+"date": "2026-04-12",
+"fav": false
+},
+{
+"id": "p40",
+"t": "t40",
+"date": "2026-04-12",
+"fav": false
+},
+{
+"id": "p41",
+"t": "t41",
+"date": "2026-04-24",
+"fav": false
+}
+]
+},
+{
+"key": "tv",
+"title": "On TV",
+"place": "nyc",
+"mode": null,
+"via": null,
+"blurb": "We showed up on Summer House. Famous now.",
+"start": "2026-04-29",
+"dates": [
+"2026-04-29",
+"2026-04-29"
+],
+"photos": [
+{
+"id": "p42",
+"t": "t42",
+"date": "2026-04-29",
+"fav": false
+},
+{
+"id": "p43",
+"t": "t43",
+"date": "2026-04-29",
+"fav": false
+}
+]
+},
+{
+"key": "ithaca",
+"title": "Slope Day",
+"place": "ithaca",
+"mode": "car",
+"via": null,
+"blurb": "Back to Ithaca for Slope Day, and your little Chloe, which was chaotic in the best way.",
+"start": "2026-05-05",
+"dates": [
+"2026-05-05",
+"2026-05-06"
+],
+"photos": [
+{
+"id": "p44",
+"t": "t44",
+"date": "2026-05-05",
+"fav": false
+},
+{
+"id": "p45",
+"t": "t45",
+"date": "2026-05-06",
+"fav": false
+}
+]
+},
+{
+"key": "early-summer",
+"title": "Early summer",
+"place": "wilmington",
+"mode": "bus",
+"via": null,
+"blurb": "More FaceTimes, and dinner at 102 Dupont.",
+"start": "2026-06-10",
+"dates": [
+"2026-06-10",
+"2026-06-12"
+],
+"photos": [
+{
+"id": "p46",
+"t": "t46",
+"date": "2026-06-10",
+"fav": false
+},
+{
+"id": "p47",
+"t": "t47",
+"date": "2026-06-12",
+"fav": false
+}
+]
+},
+{
+"key": "moving",
+"title": "You moved to New York",
+"place": "nyc",
+"mode": "car",
+"via": null,
+"blurb": "You moved to New York. No more bus, no more Amtrak. Just us.",
+"start": "2026-07-11",
+"dates": [
+"2026-07-11",
+"2026-07-11"
+],
+"photos": [
+{
+"id": "p48",
+"t": "t48",
+"date": "2026-07-11",
+"fav": false
+}
+]
+},
+{
+"key": "grandpa",
+"title": "For your grandpa",
+"place": "nyc",
+"mode": null,
+"via": null,
+"blurb": "Saying goodbye to your grandpa.",
+"start": "2026-07-18",
+"dates": [
+"2026-07-18",
+"2026-07-18"
+],
+"photos": [
+{
+"id": "p49",
+"t": "t49",
+"date": "2026-07-18",
+"fav": false
+},
+{
+"id": "p50",
+"t": "t50",
+"date": "2026-07-18",
+"fav": false
+}
+]
+},
+{
+"key": "vermont",
+"title": "The Vermont road trip",
+"place": "burlington",
+"mode": "car",
+"via": [
+"burlington",
+"waterbury",
+"randolph"
+],
+"blurb": "Lucinda's big summer road trip so you could volunteer in Vermont. Burlington, a mini Vermonster at Ben and Jerry's HQ, and the river in Randolph.",
+"start": "2026-07-21",
+"dates": [
+"2026-07-21",
+"2026-07-23"
+],
+"photos": [
+{
+"id": "p51",
+"t": "t51",
+"date": "2026-07-21",
+"fav": false
+},
+{
+"id": "p52",
+"t": "t52",
+"date": "2026-07-21",
+"fav": false
+},
+{
+"id": "p53",
+"t": "t53",
+"date": "2026-07-21",
+"fav": false
+},
+{
+"id": "p54",
+"t": "t54",
+"date": "2026-07-22",
+"fav": false
+},
+{
+"id": "p55",
+"t": "t55",
+"date": "2026-07-22",
+"fav": false
+},
+{
+"id": "p56",
+"t": "t56",
+"date": "2026-07-22",
+"fav": false
+},
+{
+"id": "p57",
+"t": "t57",
+"date": "2026-07-23",
+"fav": false
+}
+]
+},
+{
+"key": "fair",
+"title": "The farm and the county fair",
+"place": "farm",
+"mode": "car",
+"via": null,
+"blurb": "Back to the farm and the Saratoga County Fair. You won the giant pink animal and we got a free large lemonade out of it. Then the fire, and you asleep next to it.",
+"start": "2026-07-24",
+"dates": [
+"2026-07-24",
+"2026-07-25"
+],
+"photos": [
+{
+"id": "p58",
+"t": "t58",
+"date": "2026-07-24",
+"fav": false,
+"video": true
+},
+{
+"id": "p59",
+"t": "t59",
+"date": "2026-07-24",
+"fav": false,
+"video": true
+},
+{
+"id": "p60",
+"t": "t60",
+"date": "2026-07-25",
+"fav": false
+},
+{
+"id": "p61",
+"t": "t61",
+"date": "2026-07-25",
+"fav": false
+},
+{
+"id": "p62",
+"t": "t62",
+"date": "2026-07-25",
+"fav": false
+},
+{
+"id": "p63",
+"t": "t63",
+"date": "2026-07-25",
+"fav": false,
+"video": true
+}
+]
+},
+{
+"key": "city-summer",
+"title": "Summer in the city",
+"place": "nyc",
+"mode": "car",
+"via": null,
+"blurb": "Summer in the city. The kimono cat bar, oysters, a giant sushi set, and a rooftop picnic under the Empire State.",
+"start": "2026-07-30",
+"dates": [
+"2026-07-30",
+"2026-09-12"
+],
+"photos": [
+{
+"id": "p64",
+"t": "t64",
+"date": "2026-07-30",
+"fav": false
+},
+{
+"id": "p67",
+"t": "t67",
+"date": "2026-08-19",
+"fav": false
+},
+{
+"id": "p68",
+"t": "t68",
+"date": "2026-08-19",
+"fav": false
+},
+{
+"id": "p69",
+"t": "t69",
+"date": "2026-08-25",
+"fav": false
+},
+{
+"id": "p70",
+"t": "t70",
+"date": "2026-09-03",
+"fav": false
+},
+{
+"id": "p71",
+"t": "t71",
+"date": "2026-09-12",
+"fav": false
+}
+]
+},
+{
+"key": "boat",
+"title": "Last beach days",
+"place": "lbi",
+"mode": "car",
+"via": null,
+"blurb": "Beach and naps. The last beach day of the summer.",
+"start": "2026-08-08",
+"dates": [
+"2026-08-08",
+"2026-08-08"
+],
+"photos": [
+{
+"id": "p65",
+"t": "t65",
+"date": "2026-08-08",
+"fav": false
+},
+{
+"id": "p66",
+"t": "t66",
+"date": "2026-08-08",
+"fav": false
+}
+]
+},
+{
+"key": "home-oct",
+"title": "Home with your family",
+"place": "oldtappan",
+"mode": "car",
+"via": null,
+"blurb": "A cozy day at your family's with the curly dog.",
+"start": "2026-10-04",
+"dates": [
+"2026-10-04",
+"2026-10-04"
+],
+"photos": [
+{
+"id": "p72",
+"t": "t72",
+"date": "2026-10-04",
+"fav": false
+}
+]
+},
+{
+"key": "fall-farm",
+"title": "Fall at the farm",
+"place": "farm",
+"mode": "car",
+"via": [
+"farm",
+"lakegeorge",
+"saratoga"
+],
+"blurb": "Fall at the farm. Chick-fil-A on the drive up, the dogs in the leaves (maybe you and Wendell and Yul do get along sometimes), Lake George, and Cantina in Saratoga.",
+"start": "2026-10-16",
+"dates": [
+"2026-10-16",
+"2026-10-18"
+],
+"photos": [
+{
+"id": "p73",
+"t": "t73",
+"date": "2026-10-16",
+"fav": false
+},
+{
+"id": "p74",
+"t": "t74",
+"date": "2026-10-17",
+"fav": false
+},
+{
+"id": "p75",
+"t": "t75",
+"date": "2026-10-17",
+"fav": false
+},
+{
+"id": "p76",
+"t": "t76",
+"date": "2026-10-17",
+"fav": false
+},
+{
+"id": "p77",
+"t": "t77",
+"date": "2026-10-17",
+"fav": false
+},
+{
+"id": "p78",
+"t": "t78",
+"date": "2026-10-17",
+"fav": false
+},
+{
+"id": "p79",
+"t": "t79",
+"date": "2026-10-18",
+"fav": false
+}
+]
+},
+{
+"key": "cville",
+"title": "Charlottesville",
+"place": "cville",
+"mode": "plane",
+"via": null,
+"blurb": "Charlottesville to see Ali. You slept the whole way there, we danced at a wine tour, and we were way too eepy to keep up at parents weekend. Also, the lasers in your eyes should be illegal.",
+"start": "2026-10-23",
+"dates": [
+"2026-10-23",
+"2026-10-25"
+],
+"photos": [
+{
+"id": "p80",
+"t": "t80",
+"date": "2026-10-23",
+"fav": false
+},
+{
+"id": "p81",
+"t": "t81",
+"date": "2026-10-23",
+"fav": false
+},
+{
+"id": "p82",
+"t": "t82",
+"date": "2026-10-24",
+"fav": false
+},
+{
+"id": "p83",
+"t": "t83",
+"date": "2026-10-24",
+"fav": false
+},
+{
+"id": "p84",
+"t": "t84",
+"date": "2026-10-25",
+"fav": false
+},
+{
+"id": "p85",
+"t": "t85",
+"date": "2026-10-25",
+"fav": false
+},
+{
+"id": "p86",
+"t": "t86",
+"date": "2026-10-25",
+"fav": false
+}
+]
+},
+{
+"key": "halloween",
+"title": "Halloween",
+"place": "nyc",
+"mode": "plane",
+"via": null,
+"blurb": "Halloween in the city.",
+"start": "2026-10-30",
+"dates": [
+"2026-10-30",
+"2026-10-30"
+],
+"photos": [
+{
+"id": "p87",
+"t": "t87",
+"date": "2026-10-30",
+"fav": false
+},
+{
+"id": "p88",
+"t": "t88",
+"date": "2026-10-30",
+"fav": false
+}
+]
+},
+{
+"key": "cote",
+"title": "Anniversary dinner at Cote",
+"place": "nyc",
+"mode": null,
+"via": null,
+"blurb": "Our anniversary dinner at Cote. The wagyu, the jambalaya and the oysters made the meal.",
+"start": "2026-11-20",
+"dates": [
+"2026-11-20",
+"2026-11-20"
+],
+"photos": [
+{
+"id": "p89",
+"t": "t89",
+"date": "2026-11-20",
+"fav": false
+},
+{
+"id": "p90",
+"t": "t90",
+"date": "2026-11-20",
+"fav": false
+}
+]
+}
+]
+}

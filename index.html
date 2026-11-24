@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Route 4</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#a8cde0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M6 10h52v8c0 22-10 34-26 42C16 52 6 40 6 18z' fill='%231d4f9c' stroke='%23fff' stroke-width='3'/%3E%3Cpath d='M6 10h52v10H6z' fill='%23c8372d'/%3E%3Ctext x='32' y='50' font-family='Arial' font-weight='700' font-size='30' fill='%23fff' text-anchor='middle'%3E4%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Caveat:wght@500;700&family=Figtree:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- GATE: a toll ticket for Route 4 -->
+<section id="gate" class="gate" aria-label="Enter the password">
+  <div class="gate-map" aria-hidden="true"></div>
+  <form class="ticket" id="ticket" autocomplete="off">
+    <div class="ticket-top">
+      <svg class="shield" viewBox="0 0 64 64" aria-hidden="true"><use href="#shield"/></svg>
+      <div>
+        <p class="ticket-kicker">Toll ticket &middot; northbound, southbound, everywhere</p>
+        <h1 class="ticket-title">Year Four</h1>
+      </div>
+    </div>
+    <p class="ticket-line" id="gateLine" aria-live="polite">i love you</p>
+    <label class="ticket-label" for="pw">Password</label>
+    <input id="pw" name="pw" type="password" inputmode="text" autocapitalize="off" spellcheck="false" placeholder="type it here">
+    <button class="ticket-btn" type="submit">Punch my ticket</button>
+    <p class="ticket-hint" id="hint"></p>
+    <p class="ticket-err" id="gateErr" role="alert" hidden>Nope, try again</p>
+    <div class="ticket-stub" aria-hidden="true"><span>ADMIT ONE</span><span>BELLA</span><span>NO. 0004</span></div>
+    <span class="punch" aria-hidden="true"></span>
+  </form>
+</section>
+
+<!-- THE MAP -->
+<main id="app" class="app" hidden>
+  <header class="masthead">
+    <svg class="shield" viewBox="0 0 64 64" aria-hidden="true"><use href="#shield"/></svg>
+    <div>
+      <h2 class="mast-title">Our year on the road</h2>
+      <p class="mast-sub" id="mastSub">Nov 2025 to Nov 2026</p>
+    </div>
+  </header>
+
+  <div class="stage" id="stage">
+    <svg id="map" class="map" role="img" aria-label="Map of our year"></svg>
+    <div class="caption" id="caption" aria-live="polite" hidden></div>
+  </div>
+
+  <nav class="dock" aria-label="Things to do">
+    <button class="dock-btn dock-main" id="btnPlay"><span class="dock-ic" aria-hidden="true">&#9654;</span><span id="playLabel">Drive our year</span></button>
+    <button class="dock-btn" id="btnStickers">Sticker machine</button>
+    <button class="dock-btn" id="btnOdo">Odometer</button>
+    <button class="dock-btn" id="btnLetter">A letter</button>
+  </nav>
+</main>
+
+<!-- POSTCARD SHEET -->
+<aside id="sheet" class="sheet" aria-modal="false" aria-labelledby="sheetTitle" hidden>
+  <div class="sheet-grip" aria-hidden="true"></div>
+  <div class="sheet-head">
+    <div class="postmark" id="postmark" aria-hidden="true"></div>
+    <div class="sheet-titles">
+      <p class="sheet-kicker" id="sheetKicker"></p>
+      <h3 class="sheet-title" id="sheetTitle"></h3>
+    </div>
+    <button class="icon-btn" id="sheetClose" aria-label="Close">&times;</button>
+  </div>
+  <div class="strip" id="strip"></div>
+  <p class="blurb" id="blurb"></p>
+  <div class="sheet-foot">
+    <span class="stop-count" id="stopCount"></span>
+    <button class="next-btn" id="nextBtn">Next stop</button>
+  </div>
+</aside>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox" hidden>
+  <button class="icon-btn lb-close" id="lbClose" aria-label="Close">&times;</button>
+  <div class="lb-track" id="lbTrack"></div>
+</div>
+
+<!-- STICKER MACHINE -->
+<div id="machine" class="overlay" hidden>
+  <div class="overlay-card machine-card" role="dialog" aria-labelledby="mTitle">
+    <button class="icon-btn ov-close" aria-label="Close">&times;</button>
+    <h3 class="ov-title" id="mTitle">The sticker machine</h3>
+    <p class="ov-sub">One turn, one Bella. Twist the knob.</p>
+    <div class="gacha">
+      <div class="dome" id="dome" aria-hidden="true"></div>
+      <div class="gacha-body">
+        <span class="coin">25&cent;</span>
+        <button class="knob" id="knob" aria-label="Twist the knob"><span></span></button>
+        <div class="chute" id="chute"></div>
+      </div>
+    </div>
+    <p class="m-count" id="mCount"></p>
+    <div class="collection" id="collection" aria-label="Stickers you have"></div>
+  </div>
+</div>
+
+<!-- ODOMETER -->
+<div id="odo" class="overlay" hidden>
+  <div class="overlay-card odo-card" role="dialog" aria-labelledby="oTitle">
+    <button class="icon-btn ov-close" aria-label="Close">&times;</button>
+    <h3 class="ov-title" id="oTitle">Odometer</h3>
+    <p class="ov-sub">Since November 24, 2022</p>
+    <div class="odo-face">
+      <div class="odo-row"><div class="odo-digits" id="odoDays"></div><span class="odo-unit">days</span></div>
+      <div class="odo-small">
+        <div><b id="odoHours"></b><span>hours</span></div>
+        <div><b id="odoMinutes"></b><span>minutes</span></div>
+        <div><b id="odoSeconds"></b><span>seconds</span></div>
+      </div>
+    </div>
+    <p class="odo-note">and counting, no plans to trade her in</p>
+  </div>
+</div>
+
+<!-- LETTER -->
+<div id="letter" class="overlay letter-ov" hidden>
+  <button class="icon-btn ov-close letter-close" aria-label="Close">&times;</button>
+  <div class="envelope" id="envelope">
+    <div class="env-back"></div>
+    <div class="paper" id="paper" tabindex="-1"><div class="paper-inner" id="letterText"></div></div>
+    <div class="env-front"></div>
+    <div class="env-flap"></div>
+    <button class="seal" id="seal" aria-label="Break the seal"><span>4</span></button>
+  </div>
+  <p class="letter-hint" id="letterHint">tap the seal</p>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="shield" viewBox="0 0 64 64">
+      <path d="M6 8h52v10c0 22-10 34-26 42C16 52 6 40 6 18z" fill="#1d4f9c" stroke="#fff" stroke-width="3"/>
+      <path d="M7.5 9.5h49v10h-49z" fill="#c8372d"/>
+      <text x="32" y="17.6" font-family="Barlow Condensed, Arial Narrow, sans-serif" font-weight="700" font-size="8" letter-spacing="1" fill="#fff" text-anchor="middle">YEAR</text>
+      <text x="32" y="49" font-family="Barlow Condensed, Arial Narrow, sans-serif" font-weight="700" font-size="30" fill="#fff" text-anchor="middle">4</text>
+    </symbol>
+  </defs>
+</svg>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
