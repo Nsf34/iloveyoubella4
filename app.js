@@ -19,7 +19,7 @@ const gate = $('#gate'), ticket = $('#ticket'), pw = $('#pw');
 $('#hint').textContent = C.hint;
 let li = 0; const line = $('#gateLine');
 const rot = setInterval(() => { line.style.opacity = 0; setTimeout(() => { li = (li + 1) % C.gateLines.length; line.textContent = C.gateLines[li]; line.style.opacity = 1; }, 450); }, 3200);
-fetch('data/map.json').then(r => r.json()).then(m => {
+fetch('data/map.json', { cache: 'no-cache' }).then(r => r.json()).then(m => {
   const g = document.createElementNS(NS, 'svg'); g.setAttribute('viewBox', `0 0 ${m.w} ${m.h}`); g.setAttribute('preserveAspectRatio', 'xMidYMid slice');
   m.states.forEach(st => svgEl('path', { d: st.d, fill: 'var(--land)', stroke: 'var(--land-line)', 'stroke-dasharray': '4 3' }, g));
   $('.gate-map').appendChild(g);
@@ -40,7 +40,7 @@ ticket.addEventListener('submit', async e => {
 /* ---------------- data + map ---------------- */
 let MAP, YEAR, vb, svg, world, gRoutes, gPins, gVehicle, gDecal, pinEls = {}, k = 1, lastK = 0;
 async function boot(fresh) {
-  [MAP, YEAR] = await Promise.all([fetch('data/map.json').then(r => r.json()), fetch('data/year.json').then(r => r.json())]);
+  [MAP, YEAR] = await Promise.all([fetch('data/map.json', { cache: 'no-cache' }).then(r => r.json()), fetch('data/year.json', { cache: 'no-cache' }).then(r => r.json())]);
   $('#app').hidden = false;
   buildMap();
   const all = fullView();
@@ -375,7 +375,7 @@ document.addEventListener('keydown', e => {
 /* sticker machine: one ball in the dome for every sticker still inside. A turn shakes them, one drops
    out of the bottom and the rest fall. Nothing repeats until the machine is empty. */
 let STK = [];
-fetch('data/stickers.json').then(r => r.ok ? r.json() : []).then(a => { STK = a; countStk(); if (!$('#machine').hidden) fillDome(); }).catch(() => {});
+fetch('data/stickers.json', { cache: 'no-cache' }).then(r => r.ok ? r.json() : []).then(a => { STK = a; countStk(); if (!$('#machine').hidden) fillDome(); }).catch(() => {});
 const CAPS = ['#c8372d', '#2a5aa6', '#2e7d4f', '#e3a32b', '#1d2f57', '#d4456b'];
 const BR = 16;
 let balls = [], simOn = false, domeW = 0, domeH = 0, still = 0, lastT = 0, acc = 0;
