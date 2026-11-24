@@ -133,17 +133,19 @@ function fit(b) { // expand box to the stage aspect ratio, leave room for chrome
   if (w / h > ar) h = w / ar; else w = h * ar;
   return { x: cx - w / 2, y: cy - h / 2, w, h };
 }
-function fullView() { return fit({ x: 40, y: 90, w: MAP.w + 20, h: MAP.h - 110 }); }
+function fullView() { const wide = stageSize()[0] >= 900; return fit({ x: 40, y: 90, w: MAP.w + 20, h: MAP.h - 110 + (wide ? 130 : 0) }); } // wide screens: keep the bottom pin clear of the buttons
 function zoomOut(b, f) { const cx = b.x + b.w / 2, cy = b.y + b.h / 2; return { x: cx - b.w * f / 2, y: cy - b.h * f / 2, w: b.w * f, h: b.h * f }; }
 function boxAround(pts, pad, minW = 260, forSheet = false) {
   let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
   for (const [x, y] of pts) { x0 = Math.min(x0, x); y0 = Math.min(y0, y); x1 = Math.max(x1, x); y1 = Math.max(y1, y); }
+  const [W0] = stageSize(); if (W0 >= 900 && forSheet) minW = Math.max(minW, 520); // big screens: do not zoom in so far the map goes soft
   let w = Math.max(x1 - x0, minW), h = Math.max(y1 - y0, minW);
   const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
   // when the sheet covers the bottom on phones, shift the box so the target sits in the upper area
   const [W, H] = stageSize(); const phone = W < 900;
   const b = fit({ x: cx - w / 2 - pad, y: cy - h / 2 - pad, w: w + pad * 2, h: h + pad * 2 });
-  if (phone && (sheetOpen || forSheet)) b.y += b.h * 0.3;
+  if (phone && (sheetOpen || forSheet)) b.y += b.h * 0.335;
+  if (!phone && (sheetOpen || forSheet)) b.x += b.w * 0.16; // the postcard panel sits on the right
   return b;
 }
 function setView(b) {
@@ -211,6 +213,7 @@ function stops() { // chapters -> stops. Every trip leaves from home (New York),
     const seq = c.via || [c.place];
     seq.forEach((pl, j) => {
       let mode = pl === prev ? null : (j === 0 ? (c.mode || 'car') : 'car');
+      if (mode && !c.mode && pl === 'nyc') { out.push({ ci, place: pl, from: prev, mode: lastMode === 'none' ? 'car' : lastMode, show: true, quiet: true }); prev = pl; return; }
       if (j === 0 && mode && mode !== 'none' && prev !== 'nyc' && pl !== 'nyc') {
         out.push({ ci, place: 'nyc', from: prev, mode: lastMode === 'none' ? 'car' : lastMode, show: false, quiet: true }); prev = 'nyc';
       }
@@ -231,12 +234,13 @@ async function startTour() {
     const s = S[tourIdx];
     if (s.mode === 'none') { gVehicle.setAttribute('opacity', 0); const p = MAP.places[s.place]; vehicle.pos = [p.x, p.y]; }
     else if (s.mode) await drive(s, tourIdx);
-    else { const p = MAP.places[s.place]; setVehicle(vehicle.kind || 'car'); placeVehicle([p.x, p.y], vehicle.ang); gVehicle.setAttribute('opacity', 1); }
+    else { const p = MAP.places[s.place]; setVehicle(vehicle.kind || 'car'); placeVehicle([p.x, p.y], vehicle.ang); }
     markSeen(s.place);
     tourIdx++; store.set('tourIdx', tourIdx);
     if (!touring) break;
     if (s.show) {
       await camera(boxAround([[MAP.places[s.place].x, MAP.places[s.place].y]], 90, 220, true), 700);
+      gVehicle.setAttribute('opacity', 0);
       const go = await openChapter(s.ci, true);
       if (!go) { stopTour(); return; }
     }
@@ -334,6 +338,9 @@ function openChapter(ci, inTour, onNext, countText) {
   nb.textContent = inTour ? (ci === total - 1 ? 'Finish the drive' : 'Next stop') : 'Next here';
   sheet.hidden = false; requestAnimationFrame(() => sheet.classList.add('open')); sheetOpen = true;
   sheet.scrollTop = 0;
+  strip.style.removeProperty('--ph');
+  const first = strip.querySelector('img,video'), over = sheet.scrollHeight - sheet.clientHeight;
+  if (first && over > 0) strip.style.setProperty('--ph', Math.max(170, Math.round(first.getBoundingClientRect().height - over)) + 'px');
   return new Promise(res => {
     resumeNext = res;
     nb.onclick = () => { if (inTour) { resumeNext = null; closeSheet(true); res(true); } else if (onNext) onNext(); };
@@ -465,17 +472,23 @@ $('#knob').addEventListener('click', async () => {
 /* odometer */
 let odoT;
 $('#btnOdo').addEventListener('click', () => { openOv('odo'); drawOdo(true); clearInterval(odoT); odoT = setInterval(() => drawOdo(false), 1000); });
-function drawOdo(roll) {
-  const start = new Date(YEAR.start); const ms = Date.now() - start;
-  const days = Math.floor(ms / 864e5);
-  const box = $('#odoDays'); const str = String(days).padStart(4, '0');
+function reelRow(box, str, roll) {
+  if (!roll && box.children.length === str.length && box.dataset.v === str) return;
   if (roll || box.children.length !== str.length) {
     box.innerHTML = '';
     [...str].forEach((ch, i) => { const d = document.createElement('div'); d.className = 'odo-d'; const reel = document.createElement('div'); reel.className = 'reel';
       for (let n = 0; n <= 9; n++) { const x = document.createElement('div'); x.textContent = n; reel.appendChild(x); }
-      d.appendChild(reel); box.appendChild(d);
-      reel.style.transform = 'translateY(0)'; requestAnimationFrame(() => requestAnimationFrame(() => { reel.style.transitionDelay = (i * 120) + 'ms'; reel.style.transform = `translateY(-${(+ch) * 52}px)`; })); });
+      d.appendChild(reel); box.appendChild(d); reel.style.transitionDelay = (i * 120) + 'ms'; });
   }
+  box.dataset.v = str;
+  requestAnimationFrame(() => requestAnimationFrame(() => { [...box.children].forEach((d, i) => { d.firstChild.style.transform = `translateY(-${(+str[i]) * 52}px)`; }); }));
+}
+function drawOdo(roll) {
+  const start = new Date(YEAR.start), now = new Date(), ms = now - start;
+  let years = now.getFullYear() - start.getFullYear();
+  const ann = new Date(start); ann.setFullYear(start.getFullYear() + years); if (ann > now) years--;
+  reelRow($('#odoYears'), String(years), roll);
+  reelRow($('#odoDays'), String(Math.floor(ms / 864e5)).padStart(4, '0'), roll);
   $('#odoHours').textContent = Math.floor(ms / 36e5).toLocaleString();
   $('#odoMinutes').textContent = Math.floor(ms / 6e4).toLocaleString();
   $('#odoSeconds').textContent = Math.floor(ms / 1e3).toLocaleString();

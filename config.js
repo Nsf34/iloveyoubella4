@@ -6,7 +6,7 @@ window.ROUTE4 = {
   gateLines: [
     'i love you',
     'the tank is full',
-    'remember the giant skateboard?',
+    'Lightning says hi',
     'still thinking about those chocolate dumplings',
     'you won the giant pink animal',
     'my favorite passenger',
