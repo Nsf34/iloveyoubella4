@@ -7,7 +7,7 @@ window.ROUTE4 = {
     'i love you',
     'the tank is full',
     'remember the giant skateboard?',
-    'still thinking about those soup dumplings',
+    'still thinking about those chocolate dumplings',
     'you won the giant pink animal',
     'my favorite passenger',
     'luckiest guy on the road'
